@@ -13,9 +13,8 @@ import Loader from "../components/shared/loader/Loader";
 const { confirm } = Modal;
 const { Column } = Table;
 
-function Users() {
-  const [count, setCount] = useState(false);
-  const [users, setUsers] = useState([]);
+function PaymentDetails() {
+  const [paymentDetails, setPaymentDetails] = useState([]);
   const [userUpdate, setUserUpdate] = useState(false);
 
   // user search functionality
@@ -126,12 +125,12 @@ function Users() {
       ),
   });
 
-  const getUsers = async () => {
+  const getPaymentDetails = async () => {
     try {
-      fetch("http://localhost:8000/api/v1/user")
+      fetch("http://localhost:8000/api/v1/paymentDetails")
         .then((res) => res.json())
         .then((data) => {
-          setUsers(data);
+          setPaymentDetails(data);
         });
     } catch (error) {
       console.log(error);
@@ -139,39 +138,39 @@ function Users() {
   };
 
   useEffect(() => {
-    getUsers();
-  }, [count]);
+    getPaymentDetails();
+  });
 
-  const showConfirm = (id) => {
-    confirm({
-      title: "Do you Want to delete these items?",
-      icon: <ExclamationCircleOutlined />,
-      content:
-        "After click on delete then your item will be delete permanently.",
-      okText: "Delete",
-      okType: "danger",
+  //   const showConfirm = (id) => {
+  //     confirm({
+  //       title: "Do you Want to delete these items?",
+  //       icon: <ExclamationCircleOutlined />,
+  //       content:
+  //         "After click on delete then your item will be delete permanently.",
+  //       okText: "Delete",
+  //       okType: "danger",
 
-      onOk() {
-        fetch(`http://localhost:8000/api/v1/user/${id}`, {
-          method: "DELETE",
-          headers: {
-            "content-type": "application/json",
-          },
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            toast.success("User Deleted Successfully", {
-              autoClose: 1000,
-            });
-            getUsers();
-          });
-      },
+  //       onOk() {
+  //         fetch(`http://localhost:8000/api/v1/paymentDetails/${id}`, {
+  //           method: "DELETE",
+  //           headers: {
+  //             "content-type": "application/json",
+  //           },
+  //         })
+  //           .then((res) => res.json())
+  //           .then((data) => {
+  //             toast.success("User Deleted Successfully", {
+  //               autoClose: 1000,
+  //             });
+  //             getPaymentDetails();
+  //           });
+  //       },
 
-      onCancel() {
-        console.log("Cancel");
-      },
-    });
-  };
+  //       onCancel() {
+  //         console.log("Cancel");
+  //       },
+  //     });
+  //   };
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -193,14 +192,31 @@ function Users() {
                 title="User Table"
               >
                 <div className="table-responsive">
-                  <Table dataSource={users} className="ant-border-space">
-                    <Column title="Name" dataIndex="name" key="name" />
+                  <Table
+                    dataSource={paymentDetails}
+                    className="ant-border-space"
+                  >
                     <Column
-                      title="Email"
-                      dataIndex="email"
-                      key="email"
-                      {...getColumnSearchProps("email")}
+                      title="Holder Name"
+                      dataIndex="holdername"
+                      key="holdername"
+                      {...getColumnSearchProps("holdername")}
                     />
+                    <Column title="Address" dataIndex="address" key="address" />
+                    <Column title="City" dataIndex="city" key="city" />
+                    <Column title="State" dataIndex="state" key="state" />
+                    <Column title="ZipCode" dataIndex="zipcode" key="zipcode" />
+                    <Column
+                      title="CardNumber"
+                      dataIndex="cardnumber"
+                      key="cardnumber"
+                    />
+                    <Column
+                      title="Expirydate"
+                      dataIndex="expirydate"
+                      key="expirydate"
+                    />
+                    <Column title="CVV" dataIndex="cvv" key="cvv" />
                     <Column
                       title="View"
                       key="view"
@@ -214,17 +230,17 @@ function Users() {
                             }}
                             type="primary"
                           >
-                            <Link to={`/users`}>
+                            <Link to={`/paymentDetails`}>
                               <EyeOutlined style={{ fontSize: "18px" }} />
                             </Link>
                           </Button>
-                          <Button
+                          {/* <Button
                             style={{ lineHeight: 0 }}
                             type="danger"
                             onClick={() => showConfirm(record._id)}
                           >
                             <DeleteOutlined style={{ fontSize: "18px" }} />
-                          </Button>
+                          </Button> */}
                         </Space>
                       )}
                     />
@@ -241,4 +257,4 @@ function Users() {
   );
 }
 
-export default Users;
+export default PaymentDetails;

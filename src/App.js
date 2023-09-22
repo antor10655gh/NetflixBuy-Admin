@@ -15,6 +15,7 @@ import CallHistory from "./pages/CallHistory";
 import SingleProfile from "./components/shared/profile/SingleProfile";
 import AddProduct from "./pages/AddProduct";
 import EditProduct from "./pages/EditProduct";
+import PaymentDetails from "./pages/PaymentDetails";
 
 function App() {
   const user = JSON.parse(localStorage.getItem("token"));
@@ -27,6 +28,7 @@ function App() {
             <Route exact path="/users" component={Users} />
             <Route exact path="/billing" component={Billing} />
             <Route exact path="/products" component={Products} />
+            <Route exact path="/paymentDetails" component={PaymentDetails} />
             <Route exact path="/add_products" component={AddProduct} />
             <Route exact path="/edit_products/:id" component={EditProduct} />
             <Route exact path="/profile/:id" component={SingleProfile} />

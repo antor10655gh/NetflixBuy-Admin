@@ -4,6 +4,7 @@ import Echart from "../components/chart/EChart";
 import LineChart from "../components/chart/LineChart";
 function Home() {
   const [users, setUsers] = useState([]);
+  const [products, setProducts] = useState([]);
   const [paymentDetails, setPaymentDetails] = useState([]);
   console.log(users);
 
@@ -40,6 +41,22 @@ function Home() {
       .then((data) => {
         console.log(data);
         setPaymentDetails(data);
+      });
+  }, []);
+
+  // Get all products details
+  useEffect(() => {
+    fetch("http://localhost:8000/api/v1/product", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setProducts(data);
       });
   }, []);
 
@@ -137,9 +154,15 @@ function Home() {
       bnb: "bnb2",
     },
     {
+      today: "Total Products",
+      title: `${products?.length}`,
+      icon: cart,
+      bnb: "bnb2",
+    },
+    {
       today: "Payment Details",
       title: `${paymentDetails?.length}`,
-      icon: cart,
+      icon: dollar,
       bnb: "bnb2",
     },
   ];

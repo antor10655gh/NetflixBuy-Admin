@@ -101,6 +101,10 @@ const AddProduct = () => {
                 label: "TrendingProducts",
               },
               {
+                value: "BestSeller",
+                label: "BestSeller",
+              },
+              {
                 value: "BestSoftware",
                 label: "BestSoftware",
               },
@@ -111,6 +115,10 @@ const AddProduct = () => {
               {
                 value: "SummerPlay",
                 label: "SummerPlay",
+              },
+              {
+                value: "Subscriptions",
+                label: "Subscriptions",
               },
             ]}
           />
