@@ -116,7 +116,7 @@ const CallHistory = () => {
                     <Button
                       style={{
                         lineHeight: 0,
-                        background: "#AB1A93",
+                        background: "#941B1F",
                         border: "none",
                       }}
                       type="primary"
@@ -158,7 +158,7 @@ const CallHistory = () => {
                     <Button
                       style={{
                         lineHeight: 0,
-                        background: "#AB1A93",
+                        background: "#941B1F",
                         border: "none",
                       }}
                       type="primary"

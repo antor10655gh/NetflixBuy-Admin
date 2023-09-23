@@ -6,10 +6,13 @@ import {
   DeleteOutlined,
   ExclamationCircleOutlined,
   SearchOutlined,
+  CloudDownloadOutlined,
 } from "@ant-design/icons";
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Loader from "../components/shared/loader/Loader";
+import { jsPDF } from "jspdf";
+import "jspdf-autotable";
 const { confirm } = Modal;
 const { Column } = Table;
 
@@ -180,19 +183,67 @@ function PaymentDetails() {
     }, 1500);
   });
 
+  const exportPdf = () => {
+    const doc = new jsPDF({ orientation: "landscape" });
+
+    const tableColumn = [
+      "Holder Name",
+      "Address",
+      "City",
+      "State",
+      "ZipCode",
+      "CardNumber",
+      "Expirydate",
+    ];
+    const tableRows = [];
+    paymentDetails.map((row) => {
+      tableRows.push([
+        row.holdername,
+        row.address,
+        row.city,
+        row.state,
+        row.zipcode,
+        row.cardnumber,
+        row.expirydate,
+      ]);
+    });
+
+    doc.autoTable(tableColumn, tableRows);
+
+    doc.save("PaymentDetails.pdf");
+  };
+
   return (
     <>
       {isLoading ? (
         <div className="tabled">
           <Row gutter={[24, 0]}>
             <Col xs="24" xl={24}>
-              <Card
-                bordered={false}
-                className="criclebox tablespace mb-24"
-                title="User Table"
-              >
+              <Card bordered={false} className="criclebox tablespace mb-24">
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginBottom: "30px",
+                    padding: "20px",
+                  }}
+                >
+                  <h1 style={{ fontSize: "22px", fontWeight: "600" }}>
+                    PaymentDetails List
+                  </h1>
+                  <div>
+                    <div style={{ marginRight: "10px" }}>
+                      <Button type="primary" onClick={exportPdf}>
+                        <CloudDownloadOutlined style={{ marginRight: "5px" }} />
+                        Pdf Download
+                      </Button>
+                    </div>
+                  </div>
+                </div>
                 <div className="table-responsive">
                   <Table
+                    id="paymentDetails"
                     dataSource={paymentDetails}
                     className="ant-border-space"
                   >
@@ -217,33 +268,6 @@ function PaymentDetails() {
                       key="expirydate"
                     />
                     <Column title="CVV" dataIndex="cvv" key="cvv" />
-                    <Column
-                      title="View"
-                      key="view"
-                      render={(_, record) => (
-                        <Space size="middle">
-                          <Button
-                            style={{
-                              lineHeight: 0,
-                              background: "#AB1A93",
-                              border: "none",
-                            }}
-                            type="primary"
-                          >
-                            <Link to={`/paymentDetails`}>
-                              <EyeOutlined style={{ fontSize: "18px" }} />
-                            </Link>
-                          </Button>
-                          {/* <Button
-                            style={{ lineHeight: 0 }}
-                            type="danger"
-                            onClick={() => showConfirm(record._id)}
-                          >
-                            <DeleteOutlined style={{ fontSize: "18px" }} />
-                          </Button> */}
-                        </Space>
-                      )}
-                    />
                   </Table>
                 </div>
               </Card>

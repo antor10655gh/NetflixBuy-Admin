@@ -28,7 +28,7 @@ import avtar from "../../assets/images/team-2.jpg";
 
 const ButtonContainer = styled.div`
   .ant-btn-primary {
-    background-color: #AB1A93!important;
+    background-color: #941b1f !important;
   }
   .ant-btn-success {
     background-color: #52c41a;
@@ -43,7 +43,7 @@ const ButtonContainer = styled.div`
     border-radius: 5px;
   }
   .ant-switch-active {
-    background-color: #AB1A93;
+    background-color: #941b1f;
   }
 `;
 
@@ -259,7 +259,7 @@ function Header({
   const handleLogout = () => {
     localStorage.removeItem("token");
     window.location.reload();
-  }
+  };
 
   return (
     <>
@@ -329,7 +329,7 @@ function Header({
                   <ButtonContainer>
                     <Button
                       type="primary"
-                      onClick={() => handleSidenavColor("#AB1A93")}
+                      onClick={() => handleSidenavColor("#941B1F")}
                     >
                       1
                     </Button>
@@ -414,7 +414,13 @@ function Header({
               </div>
             </div>
           </Drawer>
-          <Button onClick={handleLogout} type="primary" style={{background: "#AB1A93", border: "none", color: "white"}}>Logout</Button>
+          <Button
+            onClick={handleLogout}
+            type="primary"
+            style={{ background: "#941B1F", border: "none", color: "white" }}
+          >
+            Logout
+          </Button>
           <Input
             className="header-search"
             placeholder="Type here..."

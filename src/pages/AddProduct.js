@@ -117,6 +117,14 @@ const AddProduct = () => {
                 label: "SummerPlay",
               },
               {
+                value: "GamingGiftcards",
+                label: "GamingGiftcards",
+              },
+              {
+                value: "VideoGames",
+                label: "VideoGames",
+              },
+              {
                 value: "Subscriptions",
                 label: "Subscriptions",
               },
