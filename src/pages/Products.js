@@ -466,7 +466,7 @@ const Products = () => {
                 editingProducts={editingProducts}
               />
             </Form.Item>
-            <Form.Item label="Price">
+            <Form.Item label="Old Price">
               <Input
                 prefix="$"
                 type="number"
@@ -481,7 +481,7 @@ const Products = () => {
                 }}
               />
             </Form.Item>
-            <Form.Item label="Vat">
+            <Form.Item label="New Price">
               <Input
                 prefix="$"
                 type="number"
