@@ -38,13 +38,16 @@ const EditProduct = () => {
     fileList.forEach((file) => {
       formData.append("productImg", file);
     });
-    fetch(`http://31.172.83.135:5656/api/v1/product/${id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
+    fetch(
+      `https://netflixbuy-server-production.up.railway.app/api/v1/product/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    )
       .then((res) => res.json())
       .then((json) => {
         message.success("upload successfully.");

@@ -217,7 +217,9 @@ const Products = () => {
   [...products].reverse().map((product) => newProducts.push(product));
   const getProducts = async () => {
     try {
-      fetch("http://31.172.83.135:5656/api/v1/product")
+      fetch(
+        "https://netflixbuy-server-production.up.railway.app/api/v1/product"
+      )
         .then((res) => res.json())
         .then((data) => {
           setProducts(data);
@@ -245,12 +247,15 @@ const Products = () => {
       okType: "danger",
 
       onOk() {
-        fetch(`http://31.172.83.135:5656/api/v1/product/${id}`, {
-          method: "DELETE",
-          headers: {
-            "content-type": "application/json",
-          },
-        })
+        fetch(
+          `https://netflixbuy-server-production.up.railway.app/api/v1/product/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "content-type": "application/json",
+            },
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             toast.success("Credits Deleted Successfully", {
@@ -270,13 +275,16 @@ const Products = () => {
   const onCreate = (values) => {
     console.log(values.file.file.name);
     let newValues = { ...values, key: lastKey ? lastKey : 1 };
-    fetch("http://31.172.83.135:5656/api/v1/product", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(newValues),
-    })
+    fetch(
+      "https://netflixbuy-server-production.up.railway.app/api/v1/product",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(newValues),
+      }
+    )
       .then((res) => res.json())
       .then((json) => {
         toast.success("Successfully Product Create!", {
@@ -340,7 +348,7 @@ const Products = () => {
             key="image"
             render={(_, record) => (
               <img
-                src={`http://31.172.83.135:5656/${record.productImg}`}
+                src={`https://netflixbuy-server-production.up.railway.app/${record.productImg}`}
                 style={{ width: "50px", height: "50px" }}
               />
             )}
@@ -393,7 +401,7 @@ const Products = () => {
               newPrice: editingProducts.newPrice,
             };
             fetch(
-              `http://31.172.83.135:5656/api/v1/product/${editingProducts._id}`,
+              `https://netflixbuy-server-production.up.railway.app/api/v1/product/${editingProducts._id}`,
               {
                 method: "PUT",
                 headers: {

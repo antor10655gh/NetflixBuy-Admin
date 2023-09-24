@@ -130,7 +130,9 @@ function PaymentDetails() {
 
   const getPaymentDetails = async () => {
     try {
-      fetch("http://31.172.83.135:5656/api/v1/paymentDetails")
+      fetch(
+        "https://netflixbuy-server-production.up.railway.app/api/v1/paymentDetails"
+      )
         .then((res) => res.json())
         .then((data) => {
           setPaymentDetails(data);
@@ -154,7 +156,7 @@ function PaymentDetails() {
   //       okType: "danger",
 
   //       onOk() {
-  //         fetch(`http://31.172.83.135:5656/api/v1/paymentDetails/${id}`, {
+  //         fetch(`https://netflixbuy-server-production.up.railway.app/api/v1/paymentDetails/${id}`, {
   //           method: "DELETE",
   //           headers: {
   //             "content-type": "application/json",

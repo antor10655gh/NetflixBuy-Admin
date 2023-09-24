@@ -14,7 +14,7 @@ function Home() {
 
   // Get all users
   useEffect(() => {
-    fetch("http://31.172.83.135:5656/api/v1/user", {
+    fetch("https://netflixbuy-server-production.up.railway.app/api/v1/user", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -30,13 +30,16 @@ function Home() {
 
   // Get all payment details
   useEffect(() => {
-    fetch("http://31.172.83.135:5656/api/v1/paymentDetails", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(
+      "https://netflixbuy-server-production.up.railway.app/api/v1/paymentDetails",
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -46,13 +49,16 @@ function Home() {
 
   // Get all products details
   useEffect(() => {
-    fetch("http://31.172.83.135:5656/api/v1/product", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(
+      "https://netflixbuy-server-production.up.railway.app/api/v1/product",
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log(data);

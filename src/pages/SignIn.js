@@ -25,13 +25,16 @@ const SignIn = () => {
   const onFinish = (values) => {
     values.remember = checked;
     if (values) {
-      fetch("https://chat.linkfy.org/api/v1/admin/login", {
-        method: "POST",
-        body: JSON.stringify(values),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+      fetch(
+        "https://netflixbuy-server-production.up.railway.app/api/v1/admin/login",
+        {
+          method: "POST",
+          body: JSON.stringify(values),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           console.log(data.message);
@@ -147,7 +150,11 @@ const SignIn = () => {
                     className="aligin-center"
                     valuePropName="checked"
                   >
-                    <Switch defaultChecked onChange={onChange} />
+                    <Switch
+                      defaultChecked
+                      onChange={onChange}
+                      style={{ backgroundColor: "#941b1f" }}
+                    />
                     Remember me
                   </Form.Item>
 
@@ -155,7 +162,11 @@ const SignIn = () => {
                     <Button
                       type="primary"
                       htmlType="submit"
-                      style={{ width: "100%" }}
+                      style={{
+                        width: "100%",
+                        backgroundColor: "#941b1f",
+                        border: "1px solid #941b1f",
+                      }}
                     >
                       SIGN IN
                     </Button>

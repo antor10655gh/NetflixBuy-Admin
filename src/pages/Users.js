@@ -128,7 +128,7 @@ function Users() {
 
   const getUsers = async () => {
     try {
-      fetch("http://31.172.83.135:5656/api/v1/user")
+      fetch("https://netflixbuy-server-production.up.railway.app/api/v1/user")
         .then((res) => res.json())
         .then((data) => {
           setUsers(data);
@@ -152,12 +152,15 @@ function Users() {
       okType: "danger",
 
       onOk() {
-        fetch(`http://31.172.83.135:5656/api/v1/user/${id}`, {
-          method: "DELETE",
-          headers: {
-            "content-type": "application/json",
-          },
-        })
+        fetch(
+          `https://netflixbuy-server-production.up.railway.app/api/v1/user/${id}`,
+          {
+            method: "DELETE",
+            headers: {
+              "content-type": "application/json",
+            },
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             toast.success("User Deleted Successfully", {
