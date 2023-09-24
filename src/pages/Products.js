@@ -217,7 +217,7 @@ const Products = () => {
   [...products].reverse().map((product) => newProducts.push(product));
   const getProducts = async () => {
     try {
-      fetch("http://localhost:8000/api/v1/product")
+      fetch("http://31.172.83.135:5656/api/v1/product")
         .then((res) => res.json())
         .then((data) => {
           setProducts(data);
@@ -245,7 +245,7 @@ const Products = () => {
       okType: "danger",
 
       onOk() {
-        fetch(`http://localhost:8000/api/v1/product/${id}`, {
+        fetch(`http://31.172.83.135:5656/api/v1/product/${id}`, {
           method: "DELETE",
           headers: {
             "content-type": "application/json",
@@ -270,7 +270,7 @@ const Products = () => {
   const onCreate = (values) => {
     console.log(values.file.file.name);
     let newValues = { ...values, key: lastKey ? lastKey : 1 };
-    fetch("http://localhost:8000/api/v1/product", {
+    fetch("http://31.172.83.135:5656/api/v1/product", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -340,7 +340,7 @@ const Products = () => {
             key="image"
             render={(_, record) => (
               <img
-                src={`http://localhost:8000/${record.productImg}`}
+                src={`http://31.172.83.135:5656/${record.productImg}`}
                 style={{ width: "50px", height: "50px" }}
               />
             )}
@@ -393,7 +393,7 @@ const Products = () => {
               newPrice: editingProducts.newPrice,
             };
             fetch(
-              `http://localhost:8000/api/v1/product/${editingProducts._id}`,
+              `http://31.172.83.135:5656/api/v1/product/${editingProducts._id}`,
               {
                 method: "PUT",
                 headers: {
@@ -426,6 +426,36 @@ const Products = () => {
                     return { ...pre, name: e.target.value };
                   });
                 }}
+              />
+            </Form.Item>
+            <Form.Item
+              name="mainCategory"
+              label="Main Category"
+              rules={[
+                {
+                  required: true,
+                  message: "Please select main category",
+                },
+              ]}
+            >
+              <SetMainCategory
+                onChangeFunction={onChange}
+                editingProducts={editingProducts}
+              />
+            </Form.Item>
+            <Form.Item
+              name="subCategory"
+              label="Sub Category"
+              rules={[
+                {
+                  required: true,
+                  message: "Please select sub category",
+                },
+              ]}
+            >
+              <SetSubCategory
+                onChangeFunction={onChange}
+                editingProducts={editingProducts}
               />
             </Form.Item>
             <Form.Item label="Price">
@@ -462,6 +492,83 @@ const Products = () => {
         </Modal>
       </div>
     </div>
+  );
+};
+
+const SetMainCategory = ({ onChangeFunction, editingProducts }) => {
+  const [editOption, setEditOption] = useState("");
+
+  setTimeout(() => {
+    setEditOption(editingProducts.mainCategory);
+  }, 500);
+  return (
+    <Select
+      style={{
+        width: "100%",
+      }}
+      value={editOption}
+      onChange={onChangeFunction}
+      options={[
+        {
+          value: "trendingProducts",
+          label: "trendingProducts",
+        },
+        {
+          value: "gamingGiftcards",
+          label: "gamingGiftcards",
+        },
+        {
+          value: "giftCards",
+          label: "giftCards",
+        },
+        {
+          value: "videoGames",
+          label: "videoGames",
+        },
+        {
+          value: "subscriptions",
+          label: "subscriptions",
+        },
+      ]}
+    />
+  );
+};
+const SetSubCategory = ({ onChangeFunction, editingProducts }) => {
+  const [editOption, setEditOption] = useState("");
+
+  setTimeout(() => {
+    setEditOption(editingProducts.subCategory);
+  }, 500);
+  return (
+    <Select
+      style={{
+        width: "100%",
+      }}
+      value={editOption}
+      onChange={onChangeFunction}
+      options={[
+        {
+          value: "trendingProducts",
+          label: "trendingProducts",
+        },
+        {
+          value: "gamingGiftcards",
+          label: "gamingGiftcards",
+        },
+        {
+          value: "giftCards",
+          label: "giftCards",
+        },
+        {
+          value: "videoGames",
+          label: "videoGames",
+        },
+        {
+          value: "subscriptions",
+          label: "subscriptions",
+        },
+      ]}
+    />
   );
 };
 

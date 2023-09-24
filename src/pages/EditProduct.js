@@ -38,7 +38,7 @@ const EditProduct = () => {
     fileList.forEach((file) => {
       formData.append("productImg", file);
     });
-    fetch(`http://localhost:8000/api/v1/product/${id}`, {
+    fetch(`http://31.172.83.135:5656/api/v1/product/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

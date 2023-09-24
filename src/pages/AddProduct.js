@@ -8,6 +8,8 @@ import {
   Upload,
   Button,
   message,
+  Row,
+  Col,
 } from "antd";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
@@ -32,7 +34,7 @@ const AddProduct = () => {
     formData.append("newPrice", values.newPrice);
     setUploading(true);
     // You can use any AJAX library you like
-    fetch("http://localhost:8000/api/v1/product", {
+    fetch("http://31.172.83.135:5656/api/v1/product", {
       method: "POST",
       body: formData,
     })
@@ -65,169 +67,171 @@ const AddProduct = () => {
   };
 
   return (
-    <div>
-      <Form onFinish={handleUpload} layout="vertical">
-        <Form.Item
-          name="name"
-          label="Product Name"
-          rules={[
-            {
-              required: true,
-              message: "Please enter product name",
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          name="mainCategory"
-          label="Main Category"
-          rules={[
-            {
-              required: true,
-              message: "Please select main category",
-            },
-          ]}
-        >
-          <Select
-            placeholder="Select a main category"
-            style={{
-              width: "100%",
-            }}
-            onChange={onChange}
-            options={[
+    <Row gutter={[24, 0]}>
+      <Col xs={24} md={12} lg={8}>
+        <Form onFinish={handleUpload} layout="vertical">
+          <Form.Item
+            name="name"
+            label="Product Name"
+            rules={[
               {
-                value: "TrendingProducts",
-                label: "TrendingProducts",
-              },
-              {
-                value: "BestSeller",
-                label: "BestSeller",
-              },
-              {
-                value: "BestSoftware",
-                label: "BestSoftware",
-              },
-              {
-                value: "GiftCards",
-                label: "GiftCards",
-              },
-              {
-                value: "SummerPlay",
-                label: "SummerPlay",
-              },
-              {
-                value: "GamingGiftcards",
-                label: "GamingGiftcards",
-              },
-              {
-                value: "VideoGames",
-                label: "VideoGames",
-              },
-              {
-                value: "Subscriptions",
-                label: "Subscriptions",
+                required: true,
+                message: "Please enter product name",
               },
             ]}
-          />
-        </Form.Item>
-        <Form.Item
-          name="subCategory"
-          label="Sub Category"
-          rules={[
-            {
-              required: true,
-              message: "Please select sub category",
-            },
-          ]}
-        >
-          <Select
-            placeholder="Select a sub category"
-            style={{
-              width: "100%",
-            }}
-            onChange={onChange}
-            options={[
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name="mainCategory"
+            label="Main Category"
+            rules={[
               {
-                value: "trendingProducts",
-                label: "trendingProducts",
-              },
-              {
-                value: "gamingGiftcards",
-                label: "gamingGiftcards",
-              },
-              {
-                value: "giftCards",
-                label: "giftCards",
-              },
-              {
-                value: "videoGames",
-                label: "videoGames",
-              },
-              {
-                value: "subscriptions",
-                label: "subscriptions",
+                required: true,
+                message: "Please select main category",
               },
             ]}
-          />
-        </Form.Item>
-        <Form.Item
-          name="oldPrice"
-          label="Old Price"
-          rules={[
-            {
-              required: true,
-              message: "Please enter old price",
-            },
-          ]}
-        >
-          <InputNumber
-            prefix="$"
-            type="number"
-            style={{
-              width: "100%",
-            }}
-          />
-        </Form.Item>
-        <Form.Item
-          name="newPrice"
-          label="New Price"
-          rules={[
-            {
-              required: true,
-              message: "Please enter new price",
-            },
-          ]}
-        >
-          <InputNumber
-            prefix="$"
-            type="number"
-            style={{
-              width: "100%",
-            }}
-          />
-        </Form.Item>
-        <Form.Item
-          name="file"
-          label="Upload your photo"
-          rules={[
-            {
-              required: true,
-              message: "Please enter new price",
-            },
-          ]}
-        >
-          <Upload {...props}>
-            <Button icon={<UploadOutlined />}>Select File</Button>
-          </Upload>
-        </Form.Item>
-        <Form.Item label=" ">
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-        </Form.Item>
-      </Form>
-    </div>
+          >
+            <Select
+              placeholder="Select a main category"
+              style={{
+                width: "100%",
+              }}
+              onChange={onChange}
+              options={[
+                {
+                  value: "TrendingProducts",
+                  label: "TrendingProducts",
+                },
+                {
+                  value: "BestSeller",
+                  label: "BestSeller",
+                },
+                {
+                  value: "BestSoftware",
+                  label: "BestSoftware",
+                },
+                {
+                  value: "GiftCards",
+                  label: "GiftCards",
+                },
+                {
+                  value: "SummerPlay",
+                  label: "SummerPlay",
+                },
+                {
+                  value: "GamingGiftcards",
+                  label: "GamingGiftcards",
+                },
+                {
+                  value: "VideoGames",
+                  label: "VideoGames",
+                },
+                {
+                  value: "Subscriptions",
+                  label: "Subscriptions",
+                },
+              ]}
+            />
+          </Form.Item>
+          <Form.Item
+            name="subCategory"
+            label="Sub Category"
+            rules={[
+              {
+                required: true,
+                message: "Please select sub category",
+              },
+            ]}
+          >
+            <Select
+              placeholder="Select a sub category"
+              style={{
+                width: "100%",
+              }}
+              onChange={onChange}
+              options={[
+                {
+                  value: "trendingProducts",
+                  label: "trendingProducts",
+                },
+                {
+                  value: "gamingGiftcards",
+                  label: "gamingGiftcards",
+                },
+                {
+                  value: "giftCards",
+                  label: "giftCards",
+                },
+                {
+                  value: "videoGames",
+                  label: "videoGames",
+                },
+                {
+                  value: "subscriptions",
+                  label: "subscriptions",
+                },
+              ]}
+            />
+          </Form.Item>
+          <Form.Item
+            name="oldPrice"
+            label="Old Price"
+            rules={[
+              {
+                required: true,
+                message: "Please enter old price",
+              },
+            ]}
+          >
+            <InputNumber
+              prefix="$"
+              type="number"
+              style={{
+                width: "100%",
+              }}
+            />
+          </Form.Item>
+          <Form.Item
+            name="newPrice"
+            label="New Price"
+            rules={[
+              {
+                required: true,
+                message: "Please enter new price",
+              },
+            ]}
+          >
+            <InputNumber
+              prefix="$"
+              type="number"
+              style={{
+                width: "100%",
+              }}
+            />
+          </Form.Item>
+          <Form.Item
+            name="file"
+            label="Upload your photo"
+            rules={[
+              {
+                required: true,
+                message: "Please enter new price",
+              },
+            ]}
+          >
+            <Upload {...props}>
+              <Button icon={<UploadOutlined />}>Select File</Button>
+            </Upload>
+          </Form.Item>
+          <Form.Item label=" ">
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </Col>
+    </Row>
   );
 };
 

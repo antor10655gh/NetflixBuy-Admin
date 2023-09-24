@@ -14,7 +14,7 @@ function Home() {
 
   // Get all users
   useEffect(() => {
-    fetch("http://localhost:8000/api/v1/user", {
+    fetch("http://31.172.83.135:5656/api/v1/user", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -30,7 +30,7 @@ function Home() {
 
   // Get all payment details
   useEffect(() => {
-    fetch("http://localhost:8000/api/v1/paymentDetails", {
+    fetch("http://31.172.83.135:5656/api/v1/paymentDetails", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -46,7 +46,7 @@ function Home() {
 
   // Get all products details
   useEffect(() => {
-    fetch("http://localhost:8000/api/v1/product", {
+    fetch("http://31.172.83.135:5656/api/v1/product", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

@@ -128,7 +128,7 @@ function Users() {
 
   const getUsers = async () => {
     try {
-      fetch("http://localhost:8000/api/v1/user")
+      fetch("http://31.172.83.135:5656/api/v1/user")
         .then((res) => res.json())
         .then((data) => {
           setUsers(data);
@@ -152,7 +152,7 @@ function Users() {
       okType: "danger",
 
       onOk() {
-        fetch(`http://localhost:8000/api/v1/user/${id}`, {
+        fetch(`http://31.172.83.135:5656/api/v1/user/${id}`, {
           method: "DELETE",
           headers: {
             "content-type": "application/json",
