@@ -9,19 +9,19 @@
   width: 25px;
   height: 50px;
   display: grid;
-  background: linear-gradient(#941b1f 0 0) top/100% 2px,
+  background: linear-gradient(#8ea406 0 0) top/100% 2px,
     radial-gradient(
         farthest-side at top,
         #0000 calc(100% - 2px),
-        #941b1f calc(100% - 1px),
+        #8ea406 calc(100% - 1px),
         #0000
       )
       top,
-    linear-gradient(#941b1f 0 0) bottom/100% 2px,
+    linear-gradient(#8ea406 0 0) bottom/100% 2px,
     radial-gradient(
         farthest-side at bottom,
         #0000 calc(100% - 2px),
-        #941b1f calc(100% - 1px),
+        #8ea406 calc(100% - 1px),
         #0000
       )
       bottom;

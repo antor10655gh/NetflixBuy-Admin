@@ -168,7 +168,7 @@ function Sidenav({ color }) {
   return (
     <>
       <div className="brand">
-        <h1 style={{ fontSize: "20px", fontWeight: "bold" }}>NetflixBuy</h1>
+        <img src={logo} alt="logo" style={{ width: "180px", height: "50px" }} />
       </div>
       <hr />
       <Menu theme="light" mode="inline">

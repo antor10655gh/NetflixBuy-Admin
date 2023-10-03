@@ -509,6 +509,45 @@ const SetMainCategory = ({ onChangeFunction, editingProducts }) => {
   setTimeout(() => {
     setEditOption(editingProducts.mainCategory);
   }, 500);
+  const mainOption = [
+    {
+      value: "Netflix",
+      label: "Netflix",
+    },
+    {
+      value: "RazerGold",
+      label: "Razer Gold",
+    },
+    {
+      value: "Amazon",
+      label: "Amazon",
+    },
+    {
+      value: "BinanceUSDT",
+      label: "Binance USDT",
+    },
+    {
+      value: "Vanilla",
+      label: "Vanilla",
+    },
+    {
+      value: "Steam",
+      label: "Steam",
+    },
+    {
+      value: "ITUNES",
+      label: "ITUNES",
+    },
+    {
+      value: "VirtualMastercard",
+      label: "Virtual Mastercard",
+    },
+    {
+      value: "Walmart",
+      label: "Walmart",
+    },
+  ];
+
   return (
     <Select
       style={{
@@ -516,28 +555,7 @@ const SetMainCategory = ({ onChangeFunction, editingProducts }) => {
       }}
       value={editOption}
       onChange={onChangeFunction}
-      options={[
-        {
-          value: "trendingProducts",
-          label: "trendingProducts",
-        },
-        {
-          value: "gamingGiftcards",
-          label: "gamingGiftcards",
-        },
-        {
-          value: "giftCards",
-          label: "giftCards",
-        },
-        {
-          value: "videoGames",
-          label: "videoGames",
-        },
-        {
-          value: "subscriptions",
-          label: "subscriptions",
-        },
-      ]}
+      options={mainOption}
     />
   );
 };
@@ -547,6 +565,29 @@ const SetSubCategory = ({ onChangeFunction, editingProducts }) => {
   setTimeout(() => {
     setEditOption(editingProducts.subCategory);
   }, 500);
+
+  const subOption = [
+    {
+      value: "trendingProducts",
+      label: "trendingProducts",
+    },
+    {
+      value: "gamingGiftcards",
+      label: "gamingGiftcards",
+    },
+    {
+      value: "giftCards",
+      label: "giftCards",
+    },
+    {
+      value: "videoGames",
+      label: "videoGames",
+    },
+    {
+      value: "subscriptions",
+      label: "subscriptions",
+    },
+  ];
   return (
     <Select
       style={{
@@ -554,28 +595,7 @@ const SetSubCategory = ({ onChangeFunction, editingProducts }) => {
       }}
       value={editOption}
       onChange={onChangeFunction}
-      options={[
-        {
-          value: "trendingProducts",
-          label: "trendingProducts",
-        },
-        {
-          value: "gamingGiftcards",
-          label: "gamingGiftcards",
-        },
-        {
-          value: "giftCards",
-          label: "giftCards",
-        },
-        {
-          value: "videoGames",
-          label: "videoGames",
-        },
-        {
-          value: "subscriptions",
-          label: "subscriptions",
-        },
-      ]}
+      options={subOption}
     />
   );
 };

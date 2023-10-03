@@ -28,7 +28,7 @@ import avtar from "../assets/images/team-2.jpg";
 
 const ButtonContainer = styled.div`
   .ant-btn-primary {
-    background-color: #941b1f !important;
+    background-color: #8ea406 !important;
   }
   .ant-btn-success {
     background-color: #52c41a;
@@ -43,7 +43,7 @@ const ButtonContainer = styled.div`
     border-radius: 5px;
   }
   .ant-switch-active {
-    background-color: #941b1f;
+    background-color: #8ea406;
   }
 `;
 

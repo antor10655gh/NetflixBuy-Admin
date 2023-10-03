@@ -69,6 +69,68 @@ const AddProduct = () => {
     fileList,
   };
 
+  const mainOption = [
+    {
+      value: "Netflix",
+      label: "Netflix",
+    },
+    {
+      value: "RazerGold",
+      label: "Razer Gold",
+    },
+    {
+      value: "Amazon",
+      label: "Amazon",
+    },
+    {
+      value: "BinanceUSDT",
+      label: "Binance USDT",
+    },
+    {
+      value: "Vanilla",
+      label: "Vanilla",
+    },
+    {
+      value: "Steam",
+      label: "Steam",
+    },
+    {
+      value: "Itunes",
+      label: "ITUNES",
+    },
+    {
+      value: "VirtualMastercard",
+      label: "Virtual Mastercard",
+    },
+    {
+      value: "Walmart",
+      label: "Walmart",
+    },
+  ];
+
+  const subOption = [
+    {
+      value: "trendingProducts",
+      label: "trendingProducts",
+    },
+    {
+      value: "gamingGiftcards",
+      label: "gamingGiftcards",
+    },
+    {
+      value: "giftCards",
+      label: "giftCards",
+    },
+    {
+      value: "videoGames",
+      label: "videoGames",
+    },
+    {
+      value: "subscriptions",
+      label: "subscriptions",
+    },
+  ];
+
   return (
     <Row gutter={[24, 0]}>
       <Col xs={24} md={12} lg={8}>
@@ -76,6 +138,7 @@ const AddProduct = () => {
           <Form.Item
             name="name"
             label="Product Name"
+            placeholder="Enter product name"
             rules={[
               {
                 required: true,
@@ -101,40 +164,7 @@ const AddProduct = () => {
                 width: "100%",
               }}
               onChange={onChange}
-              options={[
-                {
-                  value: "TrendingProducts",
-                  label: "TrendingProducts",
-                },
-                {
-                  value: "BestSeller",
-                  label: "BestSeller",
-                },
-                {
-                  value: "BestSoftware",
-                  label: "BestSoftware",
-                },
-                {
-                  value: "GiftCards",
-                  label: "GiftCards",
-                },
-                {
-                  value: "SummerPlay",
-                  label: "SummerPlay",
-                },
-                {
-                  value: "GamingGiftcards",
-                  label: "GamingGiftcards",
-                },
-                {
-                  value: "VideoGames",
-                  label: "VideoGames",
-                },
-                {
-                  value: "Subscriptions",
-                  label: "Subscriptions",
-                },
-              ]}
+              options={mainOption}
             />
           </Form.Item>
           <Form.Item
@@ -153,28 +183,7 @@ const AddProduct = () => {
                 width: "100%",
               }}
               onChange={onChange}
-              options={[
-                {
-                  value: "trendingProducts",
-                  label: "trendingProducts",
-                },
-                {
-                  value: "gamingGiftcards",
-                  label: "gamingGiftcards",
-                },
-                {
-                  value: "giftCards",
-                  label: "giftCards",
-                },
-                {
-                  value: "videoGames",
-                  label: "videoGames",
-                },
-                {
-                  value: "subscriptions",
-                  label: "subscriptions",
-                },
-              ]}
+              options={subOption}
             />
           </Form.Item>
           <Form.Item

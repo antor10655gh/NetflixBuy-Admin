@@ -103,7 +103,7 @@ const SignIn = () => {
                 md={{ span: 24 }}
               >
                 <div style={{ textAlign: "center", margin: "10px 0" }}>
-                  <h1>NetflixBuy</h1>
+                  <img src={logo} alt="logo" width="300px" />
                 </div>
                 <Title
                   className="font-regular text-muted text-center mb-4"
@@ -153,7 +153,7 @@ const SignIn = () => {
                     <Switch
                       defaultChecked
                       onChange={onChange}
-                      style={{ backgroundColor: "#941b1f" }}
+                      style={{ backgroundColor: "#8EA406" }}
                     />
                     Remember me
                   </Form.Item>
@@ -164,8 +164,8 @@ const SignIn = () => {
                       htmlType="submit"
                       style={{
                         width: "100%",
-                        backgroundColor: "#941b1f",
-                        border: "1px solid #941b1f",
+                        backgroundColor: "#8EA406",
+                        border: "1px solid #8EA406",
                       }}
                     >
                       SIGN IN

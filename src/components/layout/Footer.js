@@ -12,7 +12,7 @@ function Footer() {
             © 2023, made with
             {<HeartFilled />} by
             <a href="#pablo" className="font-weight-bold" target="_blank">
-              AM ANTOR
+              GCardBuy
             </a>
             for a better web.
           </div>
