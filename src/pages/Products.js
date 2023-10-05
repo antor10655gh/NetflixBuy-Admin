@@ -476,7 +476,7 @@ const Products = () => {
                 value={editingProducts?.oldPrice}
                 onChange={(e) => {
                   setEditingProducts((pre) => {
-                    return { ...pre, oldPrice: parseInt(e.target.value) };
+                    return { ...pre, oldPrice: parseFloat(e.target.value) };
                   });
                 }}
               />
@@ -491,7 +491,7 @@ const Products = () => {
                 value={editingProducts?.newPrice}
                 onChange={(e) => {
                   setEditingProducts((pre) => {
-                    return { ...pre, newPrice: parseInt(e.target.value) };
+                    return { ...pre, newPrice: parseFloat(e.target.value) };
                   });
                 }}
               />

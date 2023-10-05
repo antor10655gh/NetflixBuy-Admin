@@ -135,7 +135,7 @@ function PaymentDetails() {
       )
         .then((res) => res.json())
         .then((data) => {
-          setPaymentDetails(data);
+          setPaymentDetails(data.reverse());
         });
     } catch (error) {
       console.log(error);
