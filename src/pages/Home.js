@@ -14,7 +14,7 @@ function Home() {
 
   // Get all users
   useEffect(() => {
-    fetch("https://netflixbuy-server-production.up.railway.app/api/v1/user", {
+    fetch("https://netflix-server-production-49ea.up.railway.app/api/v1/user", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -31,7 +31,7 @@ function Home() {
   // Get all payment details
   useEffect(() => {
     fetch(
-      "https://netflixbuy-server-production.up.railway.app/api/v1/paymentDetails",
+      "https://netflix-server-production-49ea.up.railway.app/api/v1/paymentDetails",
       {
         method: "GET",
         headers: {
@@ -50,7 +50,7 @@ function Home() {
   // Get all products details
   useEffect(() => {
     fetch(
-      "https://netflixbuy-server-production.up.railway.app/api/v1/product",
+      "https://netflix-server-production-49ea.up.railway.app/api/v1/product",
       {
         method: "GET",
         headers: {

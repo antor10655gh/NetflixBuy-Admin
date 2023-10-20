@@ -128,7 +128,7 @@ function Users() {
 
   const getUsers = async () => {
     try {
-      fetch("https://netflixbuy-server-production.up.railway.app/api/v1/user")
+      fetch("https://netflix-server-production-49ea.up.railway.app/api/v1/user")
         .then((res) => res.json())
         .then((data) => {
           setUsers(data);
@@ -153,7 +153,7 @@ function Users() {
 
       onOk() {
         fetch(
-          `https://netflixbuy-server-production.up.railway.app/api/v1/user/${id}`,
+          `https://netflix-server-production-49ea.up.railway.app/api/v1/user/${id}`,
           {
             method: "DELETE",
             headers: {

@@ -39,7 +39,7 @@ const EditProduct = () => {
       formData.append("productImg", file);
     });
     fetch(
-      `https://netflixbuy-server-production.up.railway.app/api/v1/product/${id}`,
+      `https://netflix-server-production-49ea.up.railway.app/api/v1/product/${id}`,
       {
         method: "PUT",
         headers: {

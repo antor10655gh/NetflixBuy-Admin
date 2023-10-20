@@ -13,6 +13,7 @@ import {
   Drawer,
   Typography,
   Switch,
+  Form,
 } from "antd";
 
 import {
@@ -25,6 +26,7 @@ import {
 import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import avtar from "../../assets/images/team-2.jpg";
+import { toast } from "react-toastify";
 
 const ButtonContainer = styled.div`
   .ant-btn-primary {
@@ -261,6 +263,51 @@ function Header({
     window.location.reload();
   };
 
+  const [count, setCount] = useState(0);
+  const [admin, setAdmin] = useState({});
+
+  useEffect(() => {
+    fetch("https://netflix-server-production-49ea.up.railway.app/api/v1/admin")
+      .then((res) => res.json())
+      .then((data) => {
+        setAdmin(data.admins._id);
+        console.log(data.admins._id);
+      });
+  }, [count]);
+
+  const [form] = Form.useForm();
+  const onFinish = (values) => {
+    fetch(
+      `https://netflix-server-production-49ea.up.railway.app/api/v1/admin/${admin}`,
+      {
+        method: "PUT",
+        body: JSON.stringify(values),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.message);
+        toast.success("🎉 Admin Updated successfully", {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        setVisible(false);
+      });
+    form.resetFields();
+  };
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+
   return (
     <>
       {/* <div className="setting-drwer" onClick={showDrawer}>
@@ -318,99 +365,63 @@ function Header({
             <div layout="vertical">
               <div className="header-top">
                 <Title level={4}>
-                  Configurator
-                  <Text className="subtitle">See our dashboard options.</Text>
+                  Profile Settings
+                  <Text className="subtitle">
+                    You can change your email and password
+                  </Text>
                 </Title>
               </div>
 
               <div className="sidebar-color">
-                <Title level={5}>Sidebar Color</Title>
-                <div className="theme-color mb-2">
-                  <ButtonContainer>
-                    <Button
-                      type="primary"
-                      onClick={() => handleSidenavColor("#8EA406")}
-                    >
-                      1
-                    </Button>
-                    <Button
-                      type="success"
-                      onClick={() => handleSidenavColor("#52c41a")}
-                    >
-                      1
-                    </Button>
-                    <Button
-                      type="danger"
-                      onClick={() => handleSidenavColor("#d9363e")}
-                    >
-                      1
-                    </Button>
-                    <Button
-                      type="yellow"
-                      onClick={() => handleSidenavColor("#fadb14")}
-                    >
-                      1
-                    </Button>
+                <Form
+                  form={form}
+                  name="basic"
+                  labelCol={{
+                    span: 8,
+                  }}
+                  wrapperCol={{
+                    span: 16,
+                  }}
+                  initialValues={{
+                    remember: true,
+                  }}
+                  onFinish={onFinish}
+                  onFinishFailed={onFinishFailed}
+                  autoComplete="off"
+                >
+                  <Form.Item
+                    label="Email"
+                    name="Email"
+                    placeholder="Enter your new email (optional)"
+                  >
+                    <Input />
+                  </Form.Item>
 
-                    <Button
-                      type="black"
-                      onClick={() => handleSidenavColor("#111")}
-                    >
-                      1
-                    </Button>
-                  </ButtonContainer>
-                </div>
+                  <Form.Item
+                    label="Password"
+                    placeholder="Enter your new password"
+                    name="password"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input your password!",
+                      },
+                    ]}
+                  >
+                    <Input.Password />
+                  </Form.Item>
 
-                <div className="sidebarnav-color mb-2">
-                  <Title level={5}>Sidenav Type</Title>
-                  <Text>Choose between 2 different sidenav types.</Text>
-                  <ButtonContainer className="trans">
-                    <Button
-                      type={sidenavType === "transparent" ? "primary" : "white"}
-                      onClick={() => {
-                        handleSidenavType("transparent");
-                        setSidenavType("transparent");
-                      }}
-                    >
-                      TRANSPARENT
+                  <Form.Item
+                    wrapperCol={{
+                      offset: 8,
+                      span: 16,
+                    }}
+                  >
+                    <Button type="primary" htmlType="submit">
+                      Submit
                     </Button>
-                    <Button
-                      type={sidenavType === "white" ? "primary" : "white"}
-                      onClick={() => {
-                        handleSidenavType("#fff");
-                        setSidenavType("white");
-                      }}
-                    >
-                      WHITE
-                    </Button>
-                  </ButtonContainer>
-                </div>
-                <div className="fixed-nav mb-2">
-                  <Title level={5}>Navbar Fixed </Title>
-                  <Switch onChange={(e) => handleFixedNavbar(e)} />
-                </div>
-                <div className="ant-docment">
-                  <ButtonContainer>
-                    <Button type="black" size="large">
-                      FREE DOWNLOAD
-                    </Button>
-                    <Button size="large">VIEW DOCUMENTATION</Button>
-                  </ButtonContainer>
-                </div>
-                <div className="viewstar">
-                  <a href="#pablo">{<StarOutlined />} Star</a>
-                  <a href="#pablo"> 190</a>
-                </div>
-
-                <div className="ant-thank">
-                  <Title level={5} className="mb-2">
-                    Thank you for sharing!
-                  </Title>
-                  <ButtonContainer className="social">
-                    <Button type="black">{<TwitterOutlined />}TWEET</Button>
-                    <Button type="black">{<FacebookFilled />}SHARE</Button>
-                  </ButtonContainer>
-                </div>
+                  </Form.Item>
+                </Form>
               </div>
             </div>
           </Drawer>

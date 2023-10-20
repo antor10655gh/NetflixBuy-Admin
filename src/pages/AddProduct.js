@@ -35,7 +35,7 @@ const AddProduct = () => {
     setUploading(true);
     // You can use any AJAX library you like
     fetch(
-      "https://netflixbuy-server-production.up.railway.app/api/v1/product",
+      "https://netflix-server-production-49ea.up.railway.app/api/v1/product",
       {
         method: "POST",
         body: formData,

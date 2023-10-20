@@ -218,11 +218,11 @@ const Products = () => {
   const getProducts = async () => {
     try {
       fetch(
-        "https://netflixbuy-server-production.up.railway.app/api/v1/product"
+        "https://netflix-server-production-49ea.up.railway.app/api/v1/product"
       )
         .then((res) => res.json())
         .then((data) => {
-          setProducts(data);
+          setProducts(data.reverse());
           setCount(true);
         });
     } catch (error) {
@@ -248,7 +248,7 @@ const Products = () => {
 
       onOk() {
         fetch(
-          `https://netflixbuy-server-production.up.railway.app/api/v1/product/${id}`,
+          `https://netflix-server-production-49ea.up.railway.app/api/v1/product/${id}`,
           {
             method: "DELETE",
             headers: {
@@ -276,7 +276,7 @@ const Products = () => {
     console.log(values.file.file.name);
     let newValues = { ...values, key: lastKey ? lastKey : 1 };
     fetch(
-      "https://netflixbuy-server-production.up.railway.app/api/v1/product",
+      "https://netflix-server-production-49ea.up.railway.app/api/v1/product",
       {
         method: "POST",
         headers: {
@@ -304,6 +304,24 @@ const Products = () => {
     setIsEditing(true);
     setEditingProducts({ ...record });
     console.log(record._id);
+  };
+
+  // upload file
+  const [fileList, setFileList] = useState([]);
+  const [uploading, setUploading] = useState(false);
+
+  const props = {
+    onRemove: (file) => {
+      const index = fileList.indexOf(file);
+      const newFileList = fileList.slice();
+      newFileList.splice(index, 1);
+      setFileList(newFileList);
+    },
+    beforeUpload: (file) => {
+      setFileList([...fileList, file]);
+      return false;
+    },
+    fileList,
   };
 
   return (
@@ -348,7 +366,7 @@ const Products = () => {
             key="image"
             render={(_, record) => (
               <img
-                src={`https://netflixbuy-server-production.up.railway.app/${record.productImg}`}
+                src={`https://netflix-server-production-49ea.up.railway.app/${record.productImg}`}
                 style={{ width: "50px", height: "50px" }}
               />
             )}
@@ -395,22 +413,26 @@ const Products = () => {
             setIsEditing(false);
           }}
           onOk={() => {
-            const editingData = {
-              name: editingProducts.name,
-              oldPrice: editingProducts.oldPrice,
-              newPrice: editingProducts.newPrice,
-            };
+            const formData = new FormData();
+
+            fileList.forEach((file) => {
+              formData.append("productImg", file);
+            });
+
+            formData.append("name", editingProducts.name);
+            formData.append("mainCategory", editingProducts.mainCategory);
+            formData.append("subCategory", editingProducts.subCategory);
+            formData.append("oldPrice", editingProducts.oldPrice);
+            formData.append("newPrice", editingProducts.newPrice);
+
             fetch(
-              `https://netflixbuy-server-production.up.railway.app/api/v1/product/${editingProducts._id}`,
+              `https://netflix-server-production-49ea.up.railway.app/api/v1/product/${editingProducts._id}`,
               {
                 method: "PUT",
-                headers: {
-                  "content-type": "application/json",
-                },
-                body: JSON.stringify(editingData),
+                body: formData,
               }
             )
-              .then((res) => res.json())
+              .then((response) => response.json())
               .then((json) => {
                 toast.success("Credits Update Successfully", {
                   autoClose: 1000,
@@ -449,6 +471,7 @@ const Products = () => {
               <SetMainCategory
                 onChangeFunction={onChange}
                 editingProducts={editingProducts}
+                setEditingProducts={setEditingProducts}
               />
             </Form.Item>
             <Form.Item
@@ -464,6 +487,7 @@ const Products = () => {
               <SetSubCategory
                 onChangeFunction={onChange}
                 editingProducts={editingProducts}
+                setEditingProducts={setEditingProducts}
               />
             </Form.Item>
             <Form.Item label="Old Price">
@@ -496,6 +520,11 @@ const Products = () => {
                 }}
               />
             </Form.Item>
+            <Form.Item label="File">
+              <Upload {...props}>
+                <Button icon={<UploadOutlined />}>Select File</Button>
+              </Upload>
+            </Form.Item>
           </Form>
         </Modal>
       </div>
@@ -503,12 +532,21 @@ const Products = () => {
   );
 };
 
-const SetMainCategory = ({ onChangeFunction, editingProducts }) => {
-  const [editOption, setEditOption] = useState("");
+const SetMainCategory = ({
+  onChangeFunction,
+  editingProducts,
+  setEditingProducts,
+}) => {
+  const [editOption, setEditOption] = useState(null); // Initialize with null
 
-  setTimeout(() => {
-    setEditOption(editingProducts.mainCategory);
-  }, 500);
+  useEffect(() => {
+    // Set the initial value based on editingProducts.mainCategory
+    setEditOption({
+      value: editingProducts.mainCategory,
+      label: editingProducts.mainCategory,
+    });
+  }, [editingProducts.mainCategory]);
+
   const mainOption = [
     {
       value: "Netflix",
@@ -554,47 +592,72 @@ const SetMainCategory = ({ onChangeFunction, editingProducts }) => {
         width: "100%",
       }}
       value={editOption}
-      onChange={onChangeFunction}
+      onChange={(selectedOption) => {
+        setEditOption(selectedOption);
+        if (onChangeFunction) {
+          onChangeFunction(selectedOption);
+        }
+        setEditingProducts((pre) => {
+          return { ...pre, mainCategory: selectedOption };
+        });
+      }}
       options={mainOption}
     />
   );
 };
-const SetSubCategory = ({ onChangeFunction, editingProducts }) => {
-  const [editOption, setEditOption] = useState("");
+const SetSubCategory = ({
+  onChangeFunction,
+  editingProducts,
+  setEditingProducts,
+}) => {
+  const [editOption, setEditOption] = useState(null); // Initialize with null
 
-  setTimeout(() => {
-    setEditOption(editingProducts.subCategory);
-  }, 500);
+  useEffect(() => {
+    // Set the initial value based on editingProducts.subCategory
+    setEditOption({
+      value: editingProducts.subCategory,
+      label: editingProducts.subCategory,
+    });
+  }, [editingProducts.subCategory]);
 
   const subOption = [
     {
       value: "trendingProducts",
-      label: "trendingProducts",
+      label: "Trending Products",
     },
     {
       value: "gamingGiftcards",
-      label: "gamingGiftcards",
+      label: "Gaming Gift Cards",
     },
     {
       value: "giftCards",
-      label: "giftCards",
+      label: "Gift Cards",
     },
     {
       value: "videoGames",
-      label: "videoGames",
+      label: "Video Games",
     },
     {
       value: "subscriptions",
-      label: "subscriptions",
+      label: "Subscriptions",
     },
   ];
+
   return (
     <Select
       style={{
         width: "100%",
       }}
       value={editOption}
-      onChange={onChangeFunction}
+      onChange={(selectedOption) => {
+        setEditOption(selectedOption);
+        if (onChangeFunction) {
+          onChangeFunction(selectedOption);
+        }
+        setEditingProducts((pre) => {
+          return { ...pre, subCategory: selectedOption };
+        });
+      }}
       options={subOption}
     />
   );

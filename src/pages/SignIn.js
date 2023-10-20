@@ -26,7 +26,7 @@ const SignIn = () => {
     values.remember = checked;
     if (values) {
       fetch(
-        "https://netflixbuy-server-production.up.railway.app/api/v1/admin/login",
+        "https://netflix-server-production-49ea.up.railway.app/api/v1/admin/login",
         {
           method: "POST",
           body: JSON.stringify(values),
