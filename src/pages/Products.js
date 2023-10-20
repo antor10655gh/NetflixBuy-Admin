@@ -350,7 +350,7 @@ const Products = () => {
           </div>
         </div>
       </div>
-      <div style={{ marginTop: "30px" }}>
+      <div style={{ marginTop: "30px", overflowX: "auto" }}>
         <Table dataSource={newProducts}>
           <Column
             title="Image"
@@ -358,7 +358,7 @@ const Products = () => {
             key="image"
             render={(_, record) => (
               <img
-                src={`https://gcardapi.gcardbuy.com/${record.productImg}`}
+                src={`https://gcardapi.gcardbuy.com/multerFile${record.productImg}`}
                 style={{ width: "50px", height: "50px" }}
               />
             )}

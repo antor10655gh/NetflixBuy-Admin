@@ -139,20 +139,7 @@ const SignIn = () => {
                       },
                     ]}
                   >
-                    <Input placeholder="Password" />
-                  </Form.Item>
-
-                  <Form.Item
-                    name="remember"
-                    className="aligin-center"
-                    valuePropName="checked"
-                  >
-                    <Switch
-                      defaultChecked
-                      onChange={onChange}
-                      style={{ backgroundColor: "#8EA406" }}
-                    />
-                    Remember me
+                    <Input type="password" placeholder="Password" />
                   </Form.Item>
 
                   <Form.Item>
