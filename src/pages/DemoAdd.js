@@ -186,7 +186,7 @@
 //   [...products].reverse().map((product) => newProducts.push(product));
 //   const getProducts = async () => {
 //     try {
-//       fetch("https://netflix-server-production-49ea.up.railway.app/api/v1/product")
+//       fetch("https://gcardapi.gcardbuy.com/api/v1/product")
 //         .then((res) => res.json())
 //         .then((data) => {
 //           setProducts(data);
@@ -213,7 +213,7 @@
 //       okType: "danger",
 
 //       onOk() {
-//         fetch(`https://netflix-server-production-49ea.up.railway.app/api/v1/product/${id}`, {
+//         fetch(`https://gcardapi.gcardbuy.com/api/v1/product/${id}`, {
 //           method: "DELETE",
 //           headers: {
 //             "content-type": "application/json",
@@ -238,7 +238,7 @@
 //   const onCreate = (values) => {
 //     console.log(values);
 //     let newValues = { ...values, key: lastKey ? lastKey : 1 };
-//     fetch("https://netflix-server-production-49ea.up.railway.app/api/v1/product", {
+//     fetch("https://gcardapi.gcardbuy.com/api/v1/product", {
 //       method: "POST",
 //       headers: {
 //         "content-type": "application/json",

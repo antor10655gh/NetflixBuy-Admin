@@ -267,7 +267,7 @@ function Header({
   const [admin, setAdmin] = useState({});
 
   useEffect(() => {
-    fetch("https://netflix-server-production-49ea.up.railway.app/api/v1/admin")
+    fetch("https://gcardapi.gcardbuy.com/api/v1/admin")
       .then((res) => res.json())
       .then((data) => {
         setAdmin(data.admins._id);
@@ -277,16 +277,13 @@ function Header({
 
   const [form] = Form.useForm();
   const onFinish = (values) => {
-    fetch(
-      `https://netflix-server-production-49ea.up.railway.app/api/v1/admin/${admin}`,
-      {
-        method: "PUT",
-        body: JSON.stringify(values),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    fetch(`https://gcardapi.gcardbuy.com/api/v1/admin/${admin}`, {
+      method: "PUT",
+      body: JSON.stringify(values),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data.message);

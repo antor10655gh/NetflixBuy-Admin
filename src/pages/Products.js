@@ -217,9 +217,7 @@ const Products = () => {
   [...products].reverse().map((product) => newProducts.push(product));
   const getProducts = async () => {
     try {
-      fetch(
-        "https://netflix-server-production-49ea.up.railway.app/api/v1/product"
-      )
+      fetch("https://gcardapi.gcardbuy.com/api/v1/product")
         .then((res) => res.json())
         .then((data) => {
           setProducts(data.reverse());
@@ -247,15 +245,12 @@ const Products = () => {
       okType: "danger",
 
       onOk() {
-        fetch(
-          `https://netflix-server-production-49ea.up.railway.app/api/v1/product/${id}`,
-          {
-            method: "DELETE",
-            headers: {
-              "content-type": "application/json",
-            },
-          }
-        )
+        fetch(`https://gcardapi.gcardbuy.com/api/v1/product/${id}`, {
+          method: "DELETE",
+          headers: {
+            "content-type": "application/json",
+          },
+        })
           .then((res) => res.json())
           .then((data) => {
             toast.success("Credits Deleted Successfully", {
@@ -275,16 +270,13 @@ const Products = () => {
   const onCreate = (values) => {
     console.log(values.file.file.name);
     let newValues = { ...values, key: lastKey ? lastKey : 1 };
-    fetch(
-      "https://netflix-server-production-49ea.up.railway.app/api/v1/product",
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(newValues),
-      }
-    )
+    fetch("https://gcardapi.gcardbuy.com/api/v1/product", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newValues),
+    })
       .then((res) => res.json())
       .then((json) => {
         toast.success("Successfully Product Create!", {
@@ -366,7 +358,7 @@ const Products = () => {
             key="image"
             render={(_, record) => (
               <img
-                src={`https://netflix-server-production-49ea.up.railway.app/${record.productImg}`}
+                src={`https://gcardapi.gcardbuy.com/${record.productImg}`}
                 style={{ width: "50px", height: "50px" }}
               />
             )}
@@ -426,7 +418,7 @@ const Products = () => {
             formData.append("newPrice", editingProducts.newPrice);
 
             fetch(
-              `https://netflix-server-production-49ea.up.railway.app/api/v1/product/${editingProducts._id}`,
+              `https://gcardapi.gcardbuy.com/api/v1/product/${editingProducts._id}`,
               {
                 method: "PUT",
                 body: formData,

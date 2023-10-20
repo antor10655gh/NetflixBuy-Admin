@@ -25,16 +25,13 @@ const SignIn = () => {
   const onFinish = (values) => {
     values.remember = checked;
     if (values) {
-      fetch(
-        "https://netflix-server-production-49ea.up.railway.app/api/v1/admin/login",
-        {
-          method: "POST",
-          body: JSON.stringify(values),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+      fetch("https://gcardapi.gcardbuy.com/api/v1/admin/login", {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
         .then((res) => res.json())
         .then((data) => {
           console.log(data.message);

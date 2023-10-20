@@ -34,13 +34,10 @@ const AddProduct = () => {
     formData.append("newPrice", values.newPrice);
     setUploading(true);
     // You can use any AJAX library you like
-    fetch(
-      "https://netflix-server-production-49ea.up.railway.app/api/v1/product",
-      {
-        method: "POST",
-        body: formData,
-      }
-    )
+    fetch("https://gcardapi.gcardbuy.com/api/v1/product", {
+      method: "POST",
+      body: formData,
+    })
       .then((res) => res.json())
       .then(() => {
         setFileList([]);

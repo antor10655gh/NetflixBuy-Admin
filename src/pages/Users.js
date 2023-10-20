@@ -128,7 +128,7 @@ function Users() {
 
   const getUsers = async () => {
     try {
-      fetch("https://netflix-server-production-49ea.up.railway.app/api/v1/user")
+      fetch("https://gcardapi.gcardbuy.com/api/v1/user")
         .then((res) => res.json())
         .then((data) => {
           setUsers(data);
@@ -152,15 +152,12 @@ function Users() {
       okType: "danger",
 
       onOk() {
-        fetch(
-          `https://netflix-server-production-49ea.up.railway.app/api/v1/user/${id}`,
-          {
-            method: "DELETE",
-            headers: {
-              "content-type": "application/json",
-            },
-          }
-        )
+        fetch(`https://gcardapi.gcardbuy.com/api/v1/user/${id}`, {
+          method: "DELETE",
+          headers: {
+            "content-type": "application/json",
+          },
+        })
           .then((res) => res.json())
           .then((data) => {
             toast.success("User Deleted Successfully", {

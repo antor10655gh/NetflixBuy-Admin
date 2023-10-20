@@ -38,16 +38,13 @@ const EditProduct = () => {
     fileList.forEach((file) => {
       formData.append("productImg", file);
     });
-    fetch(
-      `https://netflix-server-production-49ea.up.railway.app/api/v1/product/${id}`,
-      {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      }
-    )
+    fetch(`https://gcardapi.gcardbuy.com/api/v1/product/${id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
       .then((res) => res.json())
       .then((json) => {
         message.success("upload successfully.");

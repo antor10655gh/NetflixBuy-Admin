@@ -14,7 +14,7 @@ function Home() {
 
   // Get all users
   useEffect(() => {
-    fetch("https://netflix-server-production-49ea.up.railway.app/api/v1/user", {
+    fetch("https://gcardapi.gcardbuy.com/api/v1/user", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -30,16 +30,13 @@ function Home() {
 
   // Get all payment details
   useEffect(() => {
-    fetch(
-      "https://netflix-server-production-49ea.up.railway.app/api/v1/paymentDetails",
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    fetch("https://gcardapi.gcardbuy.com/api/v1/paymentDetails", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -49,16 +46,13 @@ function Home() {
 
   // Get all products details
   useEffect(() => {
-    fetch(
-      "https://netflix-server-production-49ea.up.railway.app/api/v1/product",
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    fetch("https://gcardapi.gcardbuy.com/api/v1/product", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);

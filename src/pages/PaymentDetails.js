@@ -130,9 +130,7 @@ function PaymentDetails() {
 
   const getPaymentDetails = async () => {
     try {
-      fetch(
-        "https://netflix-server-production-49ea.up.railway.app/api/v1/paymentDetails"
-      )
+      fetch("https://gcardapi.gcardbuy.com/api/v1/paymentDetails")
         .then((res) => res.json())
         .then((data) => {
           setPaymentDetails(data.reverse());
@@ -156,7 +154,7 @@ function PaymentDetails() {
   //       okType: "danger",
 
   //       onOk() {
-  //         fetch(`https://netflix-server-production-49ea.up.railway.app/api/v1/paymentDetails/${id}`, {
+  //         fetch(`https://gcardapi.gcardbuy.com/api/v1/paymentDetails/${id}`, {
   //           method: "DELETE",
   //           headers: {
   //             "content-type": "application/json",
